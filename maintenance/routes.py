@@ -1,11 +1,13 @@
 from flask import render_template, request, redirect, url_for
 from maintenance import app, db
 from maintenance.models import Machine, Task
+from datetime import date, timedelta
 
 
 @app.route("/")
 def home():
-    return render_template("tasks.html")
+    tasks = list(Task.query.order_by(Task.id).all())
+    return render_template("tasks.html", tasks = tasks)
 
 @app.route("/machines")
 def machines():
@@ -44,4 +46,45 @@ def delete_machine(machine_id):
     db.session.commit()
     return redirect(url_for("machines"))
 
+
+@app.route("/add_task", methods = ["GET", "POST"])
+def add_task():
+    today = date.today()
+    machines = list(Machine.query.order_by(Machine.machine_name).all())
+    if request.method == "POST":
+        task = Task(
+            task_name = request.form.get("task_name"),
+            task_description = request.form.get("task_description"),
+            task_date = today,
+            task_due_date = today + timedelta(days=90),
+            machine_id = request.form.get("machine_id")
+        )
+        db.session.add(task)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("add_task.html", machines = machines)
+
+
+@app.route("/edit_task/<int:task_id>", methods = ["GET", "POST"])
+def edit_task(task_id):
+    machines = list(Machine.query.order_by(Machine.machine_name).all())
+    task = Task.query.get_or_404(task_id)
+    if request.method == "POST":
+        
+        task.task_name = request.form.get("task_name")
+        task.task_description = request.form.get("task_description")
+        task.category_id = request.form.get("category_id")
+        db.session.commit()
+        return redirect(url_for("home"))  
+    return render_template("edit_task.html",machines = machines,task = task)
+
+
+@app.route("/delete_task/<int:task_id>")
+def delete_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for("home"))
+
+    
 
