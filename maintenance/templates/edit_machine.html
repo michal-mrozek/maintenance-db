@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Edit Machine:</h3>
+
+<form method="POST" action="{{ url_for('edit_machine', machine_id = machine.id) }}">
+    <div class="mb-3">
+      <label for="machine_name" class="form-label">Machine Name</label>
+      <input type="text" minlength="3" maxlength="25" class="form-control" value="{{machine.machine_name}}" name="machine_name" id="machine_name" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="machine_model" class="form-label">Machine Model</label>
+        <input type="text" minlength="3" maxlength="25" class="form-control" value="{{machine.machine_model}}" name="machine_model" id="machine_model" required>
+      </div>
+   
+    <button type="submit" class="btn btn-primary">Edit Machine</button>
+  </form>
+
+
+{% endblock %}

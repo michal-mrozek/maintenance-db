@@ -18,13 +18,13 @@
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Machines</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('machines') }}">Machines</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Add Task</a>
+                <a class="nav-link active" aria-current="page" href="{{ url_for('tasks') }}">Add Task</a>
               </li>
             </ul>
           </div>
@@ -39,8 +39,6 @@
     {% block content %}
 
     {% endblock %}
-    CONTENT
-    <i class="fa-solid fa-database"></i>
 </main>
 
 <footer class="bg-primary-subtle text-center text-lg-start">
