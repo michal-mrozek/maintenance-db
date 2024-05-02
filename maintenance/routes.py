@@ -3,11 +3,14 @@ from maintenance import app, db
 from maintenance.models import Machine, Task
 from datetime import date, timedelta
 
+#Home
 
 @app.route("/")
 def home():
     tasks = list(Task.query.order_by(Task.id).all())
     return render_template("tasks.html", tasks = tasks)
+
+#Machines
 
 @app.route("/machines")
 def machines():
@@ -46,6 +49,7 @@ def delete_machine(machine_id):
     db.session.commit()
     return redirect(url_for("machines"))
 
+#Tasks
 
 @app.route("/add_task", methods = ["GET", "POST"])
 def add_task():

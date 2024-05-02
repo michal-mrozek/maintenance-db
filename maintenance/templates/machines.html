@@ -1,42 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-9">
+                <h3>Machines:</h3>
+                <a href="{{ url_for('add_machine') }}" class="btn btn-success">
+                    Add Machine <i class="fas fa-plus-square right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Model</th>
+                    </tr>
+                </thead>
 
-
-<div class="container text-center">
-    <div class="row justify-content-center">
-        <div class="col-9">
-            <h3>Machines:</h3>
-            <a href="{{ url_for('add_machine') }}" class="btn btn-success">
-                Add Machine <i class="fas fa-plus-square right"></i>
-            </a>
+                <tbody>
+                    {% for machine in machines %}
+                        <tr>
+                            <td> {{ machine.id }}</td>
+                            <td>{{ machine.machine_name}}</td>
+                            <td>{{ machine.machine_model}}</td>
+                            <td>
+                                <a href="{{ url_for('edit_machine', machine_id = machine.id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
+                                <a href="{{ url_for('delete_machine', machine_id = machine.id) }}" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                  <th scope="col">#id</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Model</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for machine in machines %}
-                <tr>
-                  <td> {{ machine.id }}</td>
-                  <td>{{ machine.machine_name}}</td>
-                  <td>{{ machine.machine_model}}</td>
-                  <td>
-                    <a href="{{ url_for('edit_machine', machine_id = machine.id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
-                    <a href="{{ url_for('delete_machine', machine_id = machine.id) }}" class="btn btn-sm btn-outline-danger">Delete</a>
-                  </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
 
 {% endblock %}

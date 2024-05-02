@@ -1,33 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>Add Task:</h3>
+  <h3>Add Task:</h3>
 
-<form method="POST" action="{{ url_for('add_task') }}">
+  <form method="POST" action="{{ url_for('add_task') }}">
     <div class="mb-3">
       <label for="task_name" class="form-label">Task Name</label>
       <input type="text" minlength="3" maxlength="25" class="form-control" name="task_name" id="task_name" required>
     </div>
 
     <div class="mb-3">
-        <label for="task_description" class="form-label">Task Description</label>
-        <input type="text" minlength="3" class="form-control" name="task_description" id="task_description" required>
-      </div>
+      <label for="task_description" class="form-label">Task Description</label>
+      <input type="text" minlength="3" class="form-control" name="task_description" id="task_description" required>
+    </div>
 
-      <div class="mb-3">
-        <label for="machine_id" class="form-label">Machine Name</label>
-        <select name="machine_id" id="machine_id" class="form-select mb-3" required>
-          <option value="" disabled selected>Choose Category</option>
+    <div class="mb-3">
+      <label for="machine_id" class="form-label">Machine Name</label>
+      <select name="machine_id" id="machine_id" class="form-select mb-3" required>
+        <option value="" disabled selected>Choose Machine</option>
           {% for machine in machines%}
-          <option value="{{ machine.id }}">{{ machine }}</option>
+            <option value="{{ machine.id }}">{{ machine }}</option>
           {% endfor %}
       </select>
-      </div>
+    </div>
 
-    
-   
     <button type="submit" class="btn btn-primary">Add Task</button>
   </form>
-
 
 {% endblock %}
