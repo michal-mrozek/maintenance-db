@@ -24,9 +24,9 @@
                 </tr>
             </thead>
 
-            <tbody>
-                {% for task in tasks %}
-                <tr>
+            <tbody id="tasks">
+                {% for task in tasks|sort(attribute="task_due_date") %}
+                <tr class="task">
                   <td> {{ task.id }}</td>
                   <td>{{ task.task_name }}</td>
                   <td>{{ task.task_description }}</td>
