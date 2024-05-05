@@ -43,6 +43,7 @@ As a *maintenance* engineer, I want to *efficiently manage tasks* for our facili
 ![Dashboard with list of tasks](/maintenance/static/media/tasks.png)
 
 3. **Machine Records:** CRUD functionality for tasks.
+
    *ADD*
    
 ![Form to add machine](/maintenance/static/media/add-machine-form.png)
@@ -116,7 +117,7 @@ For support, email [maintenance@example.com](mailto:maintenance@example.com).
 
 ## Authors
 
-- [Author Name](https://github.com/michal-mrozek)
+- [Majkel](https://github.com/michal-mrozek)
 
 ---
 
